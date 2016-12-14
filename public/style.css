@@ -9,74 +9,298 @@
 }
 
 body {
-  font-family: helvetica, arial, sans-serif;
+  font-family: helvetica neue, arial, sans-serif;
   margin: 25px;
-}
-
-h1 {
-  font-weight: bold;
-  color: pink;
 }
 
 .bold {
   font-weight: bold;
 }
 
-p {
-  max-width: 600px;
+.italic {
+  font-style: italic;
 }
 
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: cyan;
+.underline {
+  text-decoration: underline;
+}
+
+.fontSmall {
+  font-size: 15px;
+}
+
+.fontThin {
+  font-weight: lighter;
+}
+
+.sameLine {
+  display: inline-flex;
+}
+
+.paddingLeftSmall {
+  padding-left: 8px;
+}
+
+.paddingTopSmall {
+  padding-top: 10px;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.comment {
+  font-size: 12px;
+  color: #808080;
+}
+
+.bottomLine {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.aButton {
+    color: black;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.quarter {
+  width: 25%;
+}
+
+.inlineBlock {
   display: inline-block;
-  width: 100%;
-  max-width: 340px;
-  border-radius: 3px;
 }
 
-input {
+.block {
   display: block;
-  margin-bottom: 10px;
-  padding: 5px;
+}
+
+.bigger {
+  font-size: 20px;
+}
+
+.smaller {
+  font-size: 15px;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+}
+
+.iconMedium {
+  height: 35px;
+  width: 35px;
+}
+
+.iconLarge {
+  height: 50px;
+  width: 50px;
+}
+
+.textBorder {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+
+
+header {
+  margin-bottom: 20px;
   width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
-}
-
-button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: yellow;
-}
-
-button:active {
-  box-shadow: none;
-}
-
-li {
-  margin-bottom: 5px;
 }
 
 footer {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
+  padding-top: 15px;
+  color: #b3b3b3;
+  font-family: monaco, monospace;
+  font-size: 13px;
+  width: 100%;
 }
 
-footer > a {
-  color: #BBBBBB;
+.title {
+  color: #008000;
+  font-size: 30px;
 }
 
-.nicejob {
-  text-decoration: line-through;
+.tabTitle {
+  font-size: 25px;
+  color: #600000;
+}
+
+#WULogo {
+  width: 100px;
+}
+
+.currentTemp {
+  font-size: 50px;
+  height: 60px;
+}
+
+.fahrenheit {
+  padding-top: 9px;
+  font-size: 18px;
+}
+
+.mainContentContainer {
+  width: 100%;
+  display: inline-flex;
+}
+
+.mainContentLeft {
+  width: 25%;
+}
+
+.mainContentRight {
+  width: 75%;
+}
+
+.disappearButton {
+  border: 1px solid #008000;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.greenBorder {
+  border: 1px solid #008000;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.hourlyForecastContainers {
+  height: 60%;
+  margin: 8px;
+}
+
+
+
+/* style for hourly */
+#btnGetHourly {
+  display: inline-block;
+  position: relative;
+}
+
+#hourlyRowsContainer {
+  display: none;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.hourlyRow {
+  border-right: 1px solid #008000;
+  padding: 8px;
+  min-width: 180px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.hourlyTemp {
+  font-size: 40px;
+}
+
+
+/* style for forecast */
+#btnGetForecast {
+  display: inline-block;
+  position: relative;
+}
+
+#forecastRowsContainer {
+  display: none;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.forecastRow {
+  border-right: 1px solid #008000;
+  padding: 8px;
+  min-width: 180px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+
+
+/* style for tabs */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+ul.tab li {float: left;}
+
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    width: 150px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.tab li a:hover {background-color: #ddd;}
+
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    min-height: 500px;
+}
+
+
+/* style for search bar */
+#mainSearchBar {
+  width: 90%;
+  font-size: 15px;
+  outline: none;
+  border: none;
+}
+
+.locationList {
+  list-style: none;
+  position: absolute;
+  width: 24%;
+  margin-top: 4px;
+  margin-left: -9px;
+  border: 1px solid #008000;
+}
+
+.locationList li a {
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+  width: 100%;
+  font-size: 15px;
+  background-color: #f6fff6;
+  border: 1px solid #008000;
+  line-height: 23px;
+  padding: 8px;
+  height: 40px;
+}
+
+.locationList li a:hover {
+  font-size: 16px;
+  background-color: #e6ffe6;
+}
+
+.locationList li a:focus {
+  font-size: 18px;
+  font-weight: bold;
 }
