@@ -16,24 +16,75 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/dreams", function (request, response) {
-  response.send(dreams);
+app.get("/currentConditions", function (request, response) {
+  var url = require('url');
+  var url_parts = url.parse(request.url, true);
+  var latLng = url_parts.query;
+  var query = latLng.lat + "," + latLng.lng;
+  
+  var wuUrl = 'http://api.wunderground.com/api/448092a36655be00/conditions/q/' + query + '.json';
+
+  httpRequest(wuUrl, function(retval) {
+    response.send(retval);
+  });
 });
 
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
-  response.sendStatus(200);
+app.get("/hourly", function (request, response) {
+  var url = require('url');
+  var url_parts = url.parse(request.url, true);
+  var latLng = url_parts.query;
+  var query = latLng.lat + "," + latLng.lng;
+  
+  var wuUrl = 'http://api.wunderground.com/api/448092a36655be00/hourly/q/' + query + '.json';
+
+  httpRequest(wuUrl, function(retval) {
+    response.send(retval);
+  });
 });
 
-// Simple in-memory store for now
-var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-  ];
+app.get("/forecast", function (request, response) {
+  var url = require('url');
+  var url_parts = url.parse(request.url, true);
+  var latLng = url_parts.query;
+  var query = latLng.lat + "," + latLng.lng;
+  
+  var wuUrl = 'http://api.wunderground.com/api/448092a36655be00/forecast10day/q/' + query + '.json';
+
+  httpRequest(wuUrl, function(retval) {
+    response.send(retval);
+  });
+});
+
+app.get("/searchForLoc", function (request, response) {
+  var url = require('url');
+  var url_parts = url.parse(request.url, true);
+  var query = url_parts.query;
+  var locationText = query.loc;
+  
+  httpRequest("http://autocomplete.wunderground.com/aq?query=" + locationText, function(retval) {
+    response.send(retval);
+  });
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+function httpRequest(url, callBackFunction) {
+  var http = require("http");
+
+  http.get(url, function(res){
+    var body = '';
+
+    res.on('data', function(chunk){
+        body += chunk;
+    });
+
+    res.on('end', function(){
+      callBackFunction(JSON.parse(body));
+    });
+  }).on('error', function(e){
+      console.log("Got an error: ", e);
+  });
+}

@@ -10,45 +10,279 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to HyperDev!</title>
-    <meta name="description" content="A cool thing made with HyperDev">
-    <link id="favicon" rel="icon" href="https://hyperdev.com/favicon-app.ico" type="image/x-icon">
+    <title>JWeather</title>
+    <meta name="description" content="A simple weather app you can take anywhere">
+    <link id="favicon" rel="icon" href="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Farrow_departing.png" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
   </head>
+  
   <body>
     <header>
-      <h1>
-        A Dream of the Future
-      </h1>
-    </header>
+      <span class="title">
+        JWeather
+      </span>
+      
+      <span class="italic paddingLeftSmall fontSmall fontThin">
+        A simple weather app you can take anywhere
+      </span>
+      
+      <span id="mainSearchContainer" class="right disappearButton">
+        <div>
+          <input id="mainSearchBar" placeholder="search for your city" />
+          <a id="searchGlass" href="javascript:void(0)" class="icon right" onclick="searchGlassClick()">
+            <img src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsearch.png" class="icon" />
+          </a>
+        </div>
+        
+        <div id="locationList" class="locationList">
+          <li><a href="javascript:void(0)" class="icon right" onclick="test()">test</a></li>
+          <li><a href="javascript:void(0)" class="icon right" onclick="test2()">test 2</a></li>
+        </div>
+      </span>
 
+    </header>
+    
     <main>
-      <p class="bold">Oh hi,</p>
-      <p>Tell me your hopes and dreams:</p>
-      <form>
-        <input type="text" maxlength="100" placeholder="Dreams!">
-        <button type="submit">Submit</button>
-      </form>
-      <section class="dreams">
-        <ul id="dreams">
-        </ul>
-      </section>
+      <ul class="tab">
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'now')" id="defaultTab">Now</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'future')">Future</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'thirdTab')">Third Tab</a></li>
+      </ul>
+
+      <div id="now" class="tabcontent">
+        <span id="nowTitle" class="tabTitle">Your City</span>
+        <div class="bottomLine">
+          <span id="nowWeather">Partly Cloudy</span>
+          <span id="lastUpdated" class="comment italic right"></span>
+        </div>
+        
+        <br />
+        
+        <div class="mainContentContainer">
+          <span class="mainContentLeft">
+            
+            
+            <div>
+              <img id="nowImage" class="iconLarge" />
+            
+              <span class="sameLine">
+                <span id="nowTemp" class="currentTemp">70</span>
+                <!-- <span class="fahrenheit">&deg;F</span> -->
+              </span>
+              
+              <span id="nowFeelsLike" class="italic">Feels like 72&deg;F</span>
+            </div>
+        
+        
+            <br>
+            
+            <div id="nowWindContainer" class="sameLine">
+              <img id="nowWindIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fup_arrow.jpeg" />
+              <div id="nowWind" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            
+            <div id="nowPressureContainer" class="sameLine">
+              <img id="nowPressureIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fup_arrow.jpeg" />
+              <div id="nowPressure" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            <br>
+            <br>
+        
+            <div id="nowRelativeHumidityContainer" class="sameLine">
+              <img id="nowRelativeHumidityIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Frelative_humidity.png" />
+              <div id="nowRelativeHumidity" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            
+            <div id="nowDewpointContainer" class="sameLine">
+              <img id="nowDewpointIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fdew.png" />
+              <div id="nowDewpoint" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            
+            <div id="nowPrecipContainer" class="sameLine">
+              <img id="nowPrecipIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fprecip_today.png" />
+              <div id="nowPrecip" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            
+            <div id="nowVisibilityContainer" class="sameLine">
+              <img id="nowVisibilityIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fvisibility.png" />
+              <div id="nowVisibility" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            
+            <div id="nowSolarRadiationContainer" class="sameLine">
+              <img id="nowSolarRadiationIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsolar_radiation.png" />
+              <div id="nowSolarRadiation" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            
+            <div id="nowSoilTempContainer" class="sameLine">
+              <img id="nowSoilTempIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsoil_temperature.png" />
+              <div id="nowSoilTemp" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            <br>
+            
+            <div id="nowSoilMoistureContainer" class="sameLine">
+              <img id="nowSoilMoistureIcon" class="icon" 
+                  src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsoil_moisture.png" />
+              <div id="nowSoilMoisture" class="paddingLeftSmall">Loading...</div>
+            </div>
+            
+            
+          </span>
+          
+          
+          
+          
+          <span class="mainContentRight">
+            
+            <div class="hourlyForecastContainers">
+              
+              <div id="btnGetHourly" class="greenBorder">
+                <span id="hourlyLabelContainer">
+                  <a id="hourlyLabel" href="javascript:void(0)" class="aButton" onclick="hourlyClick(event)">+ hourly</a>
+                </span>
+                
+                <br>
+                
+                <div id="hourlyRowsContainer">
+                    <!-- <div class="hourlyRow sameLine">
+                      <span class="underline">9:00 PM</span>
+                       
+                      <br>
+                       
+                      <img class="iconMedium" />
+                      <span class="hourlyTemp">70<sup class="smaller">&deg;F</sup></span>
+                      <span class="italic smaller">(72&deg;F)</span>
+                      
+                      <br>
+                      
+                      <span>
+                        <span>Mostly Cloudy</span>
+                        <span class="bold">(27%)</span>
+                         
+                        <br>
+                         
+                        <img class="icon" />
+                        <span class="paddingLeftSmall">WNW 9 mph</span>
+                         
+                      </span>
+                     
+                    </div> -->
+                </div>
+                
+              </div>
+              
+            </div>
+            
+            
+            
+            <div class="hourlyForecastContainers">
+              
+              <div id="btnGetForecast" class="greenBorder">
+                <span id="forecastLabelContainer">
+                  <a id="forecastLabel" href="javascript:void(0)" class="aButton" onclick="forecastClick(event)">+ forecast</a>
+                </span>
+                
+                <br>
+                
+                <div id="forecastRowsContainer">
+                    <!-- <div class="hourlyRow sameLine">
+                      <span class="underline">9:00 PM</span>
+                       
+                      <br>
+                       
+                      <img class="iconMedium" />
+                      <span class="hourlyTemp">70<sup class="smaller">&deg;F</sup></span>
+                      <span class="italic smaller">(72&deg;F)</span>
+                      
+                      <br>
+                      
+                      <span>
+                        <span>Mostly Cloudy</span>
+                        <span class="bold">(27%)</span>
+                         
+                        <br>
+                         
+                        <img class="icon" />
+                        <span class="paddingLeftSmall">WNW 9 mph</span>
+                         
+                      </span>
+                     
+                    </div> -->
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </span>
+        </div>
+        
+      </div>
+        
+      <div id="future" class="tabcontent">
+        <span class="tabTitle">10 day for insert city name here</span>
+        
+      </div>
+
+      <div id="thirdTab" class="tabcontent">
+        <span class="tabTitle">Third tab content for insert city name here</span>
+        
+      </div>
     </main>
 
     <footer>
-      <a href="https://hyperdev.com">
-        Remix this in HyperDev
-      </a>
+        <span class="left">
+          Website © 2016 Joshua Halt <br/> 
+          Weather © <a href="https://www.wunderground.com/?apiref=dc317057f860bb05" target="_blank">Weather Underground</a>
+        </span>
+        <span class="right">
+          <a href="https://www.wunderground.com/?apiref=dc317057f860bb05" target="_blank">
+            <img id="WULogo" />
+          </a>
+        </span>
     </footer>
 
     <!-- Your web-app is https, so your scripts need to be too -->
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
+    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    
     <script src="/client.js"></script>
-
+    <script src="/conds.js"></script>
+    <script src="/forecast.js"></script>
+    <script src="/helper.js"></script>
+    <script src="/hourly.js"></script>
+    <script src="/jQueryRotate.js"></script>
+    <script src="/locationSearch.js"></script>
+    
   </body>
 </html>
