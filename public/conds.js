@@ -1,10 +1,9 @@
 // Handles current conditions
 
+var allConditions = "";
+
 function getCurrentConditionsForLatLong(latitude, longitude) {
   $.get('/currentConditions?' + $.param({lat: latitude, lng: longitude}), function(conds) {
-    $('.tab').show();
-    $('#now').show();
-    
     allConditions = conds.current_observation;
     
     var currentTemp = Math.round(allConditions.temp_f);
@@ -39,6 +38,9 @@ function getCurrentConditionsForLatLong(latitude, longitude) {
 
     $('#WULogo').attr("src", wuLogoUrl);
     $('#WULogo').attr("alt", "Weather Underground");
+    $('#WULogo').removeClass('displayNone');
+    
+    showHideTab('now', true);
   });
 }
 

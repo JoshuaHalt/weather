@@ -11,12 +11,12 @@
 <html>
   <head>
     <title>JWeather</title>
-    <meta name="description" content="A simple weather app you can take anywhere">
-    <link id="favicon" rel="icon" href="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Farrow_departing.png" type="image/x-icon">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/style.css">
+    <meta name="description" content="A simple weather app you can take anywhere" />
+    <link id="favicon" rel="icon" href="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Farrow_departing.png" type="image/x-icon" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/styleDesktop.css" />
   </head>
   
   <body>
@@ -29,27 +29,28 @@
         A simple weather app you can take anywhere
       </span>
       
-      <span id="mainSearchContainer" class="right disappearButton">
+      <span id="mainSearchContainer" class="right searchContainer">
         <div>
           <input id="mainSearchBar" placeholder="search for your city" />
           <a id="searchGlass" href="javascript:void(0)" class="icon right" onclick="searchGlassClick()">
-            <img src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsearch.png" class="icon" />
+            <img src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsearch.png" class="icon" alt="Search" />
           </a>
         </div>
         
         <div id="locationList" class="locationList">
-          <li><a href="javascript:void(0)" class="icon right" onclick="test()">test</a></li>
-          <li><a href="javascript:void(0)" class="icon right" onclick="test2()">test 2</a></li>
+          <!-- <li><a href="javascript:void(0)" class="icon right" onclick="test()">test</a></li> -->
+          <!-- <li><a href="javascript:void(0)" class="icon right" onclick="test2()">test 2</a></li> -->
         </div>
       </span>
+      
 
     </header>
     
     <main>
-      <ul class="tab">
-        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'now')" id="defaultTab">Now</a></li>
-        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'future')">Future</a></li>
-        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'thirdTab')">Third Tab</a></li>
+      <ul class="tab displayNone">
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'now', '')" id="defaultTab">Now</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'future', '')">Future</a></li>
+        <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'thirdTab', '')">Third Tab</a></li>
       </ul>
 
       <div id="now" class="tabcontent">
@@ -66,7 +67,7 @@
             
             
             <div>
-              <img id="nowImage" class="iconLarge" />
+              <img id="nowImage" class="iconLarge" src="" alt="" />
             
               <span class="sameLine">
                 <span id="nowTemp" class="currentTemp">70</span>
@@ -80,7 +81,7 @@
             <br>
             
             <div id="nowWindContainer" class="sameLine">
-              <img id="nowWindIcon" class="icon" 
+              <img id="nowWindIcon" class="icon" alt="current wind"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fup_arrow.jpeg" />
               <div id="nowWind" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -88,7 +89,7 @@
             <br>
             
             <div id="nowPressureContainer" class="sameLine">
-              <img id="nowPressureIcon" class="icon" 
+              <img id="nowPressureIcon" class="icon" alt="current pressure"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fup_arrow.jpeg" />
               <div id="nowPressure" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -98,7 +99,7 @@
             <br>
         
             <div id="nowRelativeHumidityContainer" class="sameLine">
-              <img id="nowRelativeHumidityIcon" class="icon" 
+              <img id="nowRelativeHumidityIcon" class="icon" alt="current relative humidity"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Frelative_humidity.png" />
               <div id="nowRelativeHumidity" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -106,7 +107,7 @@
             <br>
             
             <div id="nowDewpointContainer" class="sameLine">
-              <img id="nowDewpointIcon" class="icon" 
+              <img id="nowDewpointIcon" class="icon" alt="current dewpoint"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fdew.png" />
               <div id="nowDewpoint" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -114,7 +115,7 @@
             <br>
             
             <div id="nowPrecipContainer" class="sameLine">
-              <img id="nowPrecipIcon" class="icon" 
+              <img id="nowPrecipIcon" class="icon" alt="current precipitation"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fprecip_today.png" />
               <div id="nowPrecip" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -122,7 +123,7 @@
             <br>
             
             <div id="nowVisibilityContainer" class="sameLine">
-              <img id="nowVisibilityIcon" class="icon" 
+              <img id="nowVisibilityIcon" class="icon" alt="current visibility"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fvisibility.png" />
               <div id="nowVisibility" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -130,7 +131,7 @@
             <br>
             
             <div id="nowSolarRadiationContainer" class="sameLine">
-              <img id="nowSolarRadiationIcon" class="icon" 
+              <img id="nowSolarRadiationIcon" class="icon" alt="current solar radiation"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsolar_radiation.png" />
               <div id="nowSolarRadiation" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -138,7 +139,7 @@
             <br>
             
             <div id="nowSoilTempContainer" class="sameLine">
-              <img id="nowSoilTempIcon" class="icon" 
+              <img id="nowSoilTempIcon" class="icon" alt="current soil temperature"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsoil_temperature.png" />
               <div id="nowSoilTemp" class="paddingLeftSmall">Loading...</div>
             </div>
@@ -146,11 +147,10 @@
             <br>
             
             <div id="nowSoilMoistureContainer" class="sameLine">
-              <img id="nowSoilMoistureIcon" class="icon" 
+              <img id="nowSoilMoistureIcon" class="icon" alt="current soil moisture"
                   src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fsoil_moisture.png" />
               <div id="nowSoilMoisture" class="paddingLeftSmall">Loading...</div>
             </div>
-            
             
           </span>
           
@@ -162,11 +162,11 @@
             <div class="hourlyForecastContainers">
               
               <div id="btnGetHourly" class="greenBorder">
-                <span id="hourlyLabelContainer">
+                <div>
                   <a id="hourlyLabel" href="javascript:void(0)" class="aButton" onclick="hourlyClick(event)">+ hourly</a>
-                </span>
-                
-                <br>
+                  
+                  <a id="hourlyGraphLabel" href="javascript:void(0)" class="greenShadow bold displayNone" onclick="hourlyGraphClick(event)">view as graph</a>
+                </div>
                 
                 <div id="hourlyRowsContainer">
                     <!-- <div class="hourlyRow sameLine">
@@ -203,36 +203,42 @@
             <div class="hourlyForecastContainers">
               
               <div id="btnGetForecast" class="greenBorder">
-                <span id="forecastLabelContainer">
+                <div>
                   <a id="forecastLabel" href="javascript:void(0)" class="aButton" onclick="forecastClick(event)">+ forecast</a>
-                </span>
-                
-                <br>
+                  
+                  <a id="forecastGraphLabel" href="javascript:void(0)" class="greenShadow bold displayNone" onclick="forecastGraphClick(event)">view as graph</a>
+                  
+                  <a id="forecastDetailsLabel" href="javascript:void(0)" class="greenShadow bold displayNone" onclick="forecastDetailsClick(event)">text view</a>
+                </div>
                 
                 <div id="forecastRowsContainer">
-                    <!-- <div class="hourlyRow sameLine">
-                      <span class="underline">9:00 PM</span>
-                       
-                      <br>
-                       
-                      <img class="iconMedium" />
-                      <span class="hourlyTemp">70<sup class="smaller">&deg;F</sup></span>
-                      <span class="italic smaller">(72&deg;F)</span>
-                      
-                      <br>
-                      
-                      <span>
-                        <span>Mostly Cloudy</span>
-                        <span class="bold">(27%)</span>
-                         
-                        <br>
-                         
-                        <img class="icon" />
-                        <span class="paddingLeftSmall">WNW 9 mph</span>
-                         
-                      </span>
+                  
+                  <!-- <a class="forecastRow">
+                    <span class="underline">Wednesday 12/21</span>
                      
-                    </div> -->
+                    <br>
+                     
+                    <img class="iconMedium" src="" alt=""/>
+                    <span id="forecastWx' + i + '">Partly cloudy</span>
+                    <span id="forecastPop' + i + '" class="paddingLeftSmall">(20%)</span>
+                    
+                    <br>
+                    
+                    <span id="forecastHighTemp" class="smallerTemp highRight">29<sup class="smaller">&deg;F</sup></span>
+                    <span id="forecastLowTemp" class="smallerTemp lowLeft">18<sup class="smaller">&deg;F</sup></span>
+                       
+                    <br>
+                      
+                    <img id="forecastWindIcon" class="icon" src="https://cdn.hyperdev.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fup_arrow.jpeg"/>
+                    <span id="forecastWind" class="paddingLeftSmall">WNW 18 mph</span>
+                    
+                    <br>
+                    
+                    <img class="icon hidden" />
+                    <span id="forecastWindGust" class="paddingLeftSmall">Gusts 26 mph</span>
+                    
+                  </a> -->
+                  
                 </div>
                 
               </div>
@@ -241,6 +247,36 @@
             
           </span>
         </div>
+        
+        <div class="popupContainer displayNone" onclick="showHidePopup(false, event)">
+          
+          <div id="popupGraphsContainerParent">
+            <div class="popupSubContainer" onclick="showHidePopup(false, event)">
+              <ul class="tab tabPopup">
+                <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphTemps', 'GraphPopup')" id="defaultTabGraphPopup">Temps</a></li>
+                <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphWind', 'GraphPopup')">Wind</a></li>
+                <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphPop', 'GraphPopup')">Precip</a></li>
+              </ul>
+              
+              <div id="tabGraphTemps" class="tabcontentGraphPopup">
+                <div id="popupGraphTemp"></div>
+              </div>
+        
+              <div id="tabGraphWind" class="tabcontentGraphPopup">
+                <div id="popupGraphWind"></div>
+              </div>
+              
+              <div id="tabGraphPop" class="tabcontentGraphPopup">
+                <div id="popupGraphPop"></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- additional popup html goes here -->
+          
+        </div>
+        
+        <div id="popupBackgroundBlocker" class="displayNone" onclick="showHidePopup(false)"></div>
         
       </div>
         
@@ -262,7 +298,7 @@
         </span>
         <span class="right">
           <a href="https://www.wunderground.com/?apiref=dc317057f860bb05" target="_blank">
-            <img id="WULogo" />
+            <img id="WULogo" class="displayNone" src="" alt="" />
           </a>
         </span>
     </footer>
@@ -281,6 +317,7 @@
     <script src="/forecast.js"></script>
     <script src="/helper.js"></script>
     <script src="/hourly.js"></script>
+    <script src="/jQueryCanvas.min.js"></script>
     <script src="/jQueryRotate.js"></script>
     <script src="/locationSearch.js"></script>
     
