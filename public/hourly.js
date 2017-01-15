@@ -4,7 +4,12 @@ var allHourly = "";
 
 var isHourlyShowing = false;
 
+var isIgnoringClickActions = false;
+
 function hourlyClick(evt) {
+  if (isIgnoringClickActions)
+    return;
+  
   showHideHourly(!isHourlyShowing);
   
   if (allHourly === '') {
@@ -27,13 +32,13 @@ function hourlyClick(evt) {
         var windSpeed = hour.wspd.english;
         var snow = hour.snow.english;
                                 
-        var hourlyRowTemplate = '<a class="hourlyRow">' +
+        var hourlyRowTemplate = '<a id="hourlyRow' + i + '" class="hourlyRow">' +
                                   '<span class="underline">' + time + '</span>' +
                                    
                                   '<br>' +
                                    
                                   '<img class="iconMedium" src="'+ iconUrl + '" alt="' + icon + '"/>' + 
-                                  '<span id="hourlyTemp' + i + '" class="hourlyTemp">' + temp + '</span>' +
+                                  '<span id="hourlyTemp' + i + '" class="smallerTemp paddingLeftSmall">' + temp + '</span>' +
                                   '<span id="hourlyFeelsLike' + i + '" class="italic smaller paddingLeftSmall">(' + feelsLike + '&deg;F)</span>' +
                                   
                                   '<br>' +
@@ -55,6 +60,11 @@ function hourlyClick(evt) {
                                 
         $('#hourlyRowsContainer').append(hourlyRowTemplate);
         
+        $('#hourlyRow' + i).css('display', 'none');
+        
+        if (i + 1 === allHourly.length)
+          $('#hourlyRow' + i).css('border-right', 'none');
+        
         processTemps($('#hourlyTemp' + i), $('#hourlyFeelsLike' + i), temp, feelsLike, true);
         processWind($('#hourlyWind' + i), $('#hourlyWindIcon' + i), windDegrees, windDir, windSpeed, -100);
         
@@ -66,30 +76,77 @@ function hourlyClick(evt) {
           $('#hourlyWx' + i).css('font-weight', 'normal');
         }
       });
+      
+      $('#hourlyGraphLabel').fadeIn(300);
+      $('#hourlyRowsContainer').fadeIn(300, function() {
+        isIgnoringClickActions = false;
+        
+        fadeIn('#hourlyRow', allHourly.length, 'hourly');
+      });
     });
   }
 }
 
+function hourlyGraphClick() {
+  if (allHourly !== '') {
+    
+    var colorSet = allHourly[0].temp.english > 55 ? 'summerColors' : 'winterColors';
+    
+    var tempArray = [];
+    var feelsLikeArray = [];
+    var popArray = [];
+    var windSpeedArray = [];
+    
+    $.each(allHourly, function (i, hour) {
+      tempArray.push({ 'label': hour.FCTTIME.civil, y: parseInt(hour.temp.english) });
+      feelsLikeArray.push({ 'label': hour.FCTTIME.civil, y: parseInt(hour.feelslike.english) });
+      popArray.push({ 'label': hour.FCTTIME.civil, y: parseInt(hour.pop) });
+      windSpeedArray.push({ 'label': hour.FCTTIME.civil, y: parseInt(hour.wspd.english) });
+    });
+    
+    $('#defaultTabGraphPopup')[0].click();
+    
+    showGraph('Hourly Temps', '36 Hour Forecast', 'Temperature (\xB0F)', colorSet,
+              { 'Temperature': tempArray, 'Feels Like': feelsLikeArray }, $('#popupGraphTemp'));
+              
+    showGraph('Hourly Wind', '36 Hour Forecast', 'Wind (mph)', colorSet,
+              { 'Wind Speed': windSpeedArray }, $('#popupGraphWind'));
+              
+    showGraph('Hourly Precipitation Chance', '36 Hour Forecast', 'Chance (%)', colorSet,
+              { 'Precip Chance': popArray }, $('#popupGraphPop'));
+  	
+  	showHidePopup(true);
+  }
+}
+
 function showHideHourly(shouldShow) {
+  isIgnoringClickActions = true;
+  
   var plusHourly = '+ hourly';
   var minusHourly = '- hourly';
   
   if (shouldShow) {
     $('#hourlyLabel').text(minusHourly);
     
-    $('#btnGetHourly').stop().animate({ width: '98%', height: '98%' }, 300, function() {
-      $('#hourlyRowsContainer').fadeIn(300);
+    $('#btnGetHourly').stop().animate({ width: '100%' }, 300, function() {
+      if (allHourly !== '') {
+        $('#hourlyRowsContainer').fadeIn(300);
+        $('#hourlyGraphLabel').fadeIn(300);
+        
+        isIgnoringClickActions = false;
+      }
     });
     
     isHourlyShowing = true;
   } else {
     $('#hourlyLabel').text(plusHourly);
     
+    $('#hourlyGraphLabel').fadeOut(250);
     $('#hourlyRowsContainer').stop().fadeOut(300, function () {
-      $('#btnGetHourly').css('width', 'initial');
-      $('#btnGetHourly').css('height', 'initial');
+      $('#btnGetHourly').css('width', '');
       
       isHourlyShowing = false;
+      isIgnoringClickActions = false;
     });
   }
 }

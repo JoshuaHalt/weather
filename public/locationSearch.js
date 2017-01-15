@@ -30,7 +30,7 @@ function addSearchBarMethods() {
   });
   
   $("#mainSearchBar").on('focusout', function (e) {
-    if (e.relatedTarget !== null && e.relatedTarget.id !== 'searchGlass')
+    if (e.relatedTarget === null || e.relatedTarget.id !== 'searchGlass')
       showHideSearch(false);
   });
   
@@ -49,11 +49,14 @@ function searchForLocation() {
   $.get('/searchForLoc?' + $.param({loc: searchLoc}), function(locs) {
     $('#locationList').html("");
     
+    if (!isSearchShowing)
+      return;
+    
     currentLocationList = locs.RESULTS;
     
     $.each(currentLocationList, function(i, loc) {
-      $('<li></li>').html("<a href=\"javascript:void(0)\" class=\"icon right\" onclick=\"handleLocationSelected('" +
-          loc.name + "', " + loc.lat + ", " + loc.lon + ")\">" + loc.name + "</a>").appendTo('#locationList');
+        $('<li></li>').html("<a href=\"javascript:void(0)\" onclick=\"handleLocationSelected('" +
+          loc.name + "', " + loc.lat + ", " + loc.lon + ")\">" + loc.name + "</a>").addClass('flex').appendTo('#locationList');
           
       if (i === 9)
         return false;
@@ -82,8 +85,17 @@ function handleLocationSelected(name, lat, lng) {
   
   $("#mainSearchBar").val(name);
   
-  if (isHourlyShowing)
+  if (isHourlyShowing) {
     showHideHourly(false);
+    allHourly = '';
+    $('#hourlyRowsContainer').html('');
+  }
+    
+  if (isForecastShowing) {
+    showHideForecast(false);
+    allForecast = '';
+    $('#forecastRowsContainer').html('');
+  }
   
   writeCookie(COOKIE_LAST_LOCATION_LAT_LNG, lat + ',' + lng, 365 * 5);
   writeCookie(COOKIE_LAST_LOCATION_NAME, name, 365 * 5);
