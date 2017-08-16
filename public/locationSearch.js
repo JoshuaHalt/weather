@@ -41,6 +41,12 @@ function addSearchBarMethods() {
   
   $('#locationList').hide();
   $('#mainSearchBar').hide();
+  
+  if ("geolocation" in navigator) {
+    /* geolocation is available */
+  } else {
+    $('#currentLocation').hide();
+  }
 }
 
 function searchForLocation() {
@@ -66,6 +72,19 @@ function searchForLocation() {
       $('#locationList').hide();
     else
       $('#locationList').fadeIn(300);
+  });
+}
+
+function currentLocationClick() {
+  navigator.geolocation.getCurrentPosition(function(location) {
+    var searchLoc = location.coords.latitude + "," + location.coords.longitude;
+    
+    $.get('/searchForLatLng?' + $.param({loc: searchLoc}), function(locs) {
+      $('#locationList').hide();
+      
+      var loc = locs.location;
+      handleLocationSelected(loc.city + ", " + loc.state, loc.lat, loc.lon);
+    });
   });
 }
 
@@ -96,6 +115,8 @@ function handleLocationSelected(name, lat, lng) {
     allForecast = '';
     $('#forecastRowsContainer').html('');
   }
+  
+  searchedLatLng = [lat, lng];
   
   writeCookie(COOKIE_LAST_LOCATION_LAT_LNG, lat + ',' + lng, 365 * 5);
   writeCookie(COOKIE_LAST_LOCATION_NAME, name, 365 * 5);
