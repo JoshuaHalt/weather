@@ -220,13 +220,13 @@ function forecastGraphClick() {
     $('#defaultTabGraphPopup')[0].click();
     
     showGraph('10 Day Temps', '10 Days', 'Temperature (\xB0F)', colorSet,
-              { 'High': highTempArray, 'Low': lowTempArray }, $('#popupGraphTemp'));
+              { 'High': highTempArray, 'Low': lowTempArray }, $('#popupGraphTemp'), false);
               
     showGraph('10 Day Wind', '10 Days', 'Wind (mph)', colorSet,
-              { 'Wind Speed': windSpeedArray }, $('#popupGraphWind'));
+              { 'Wind Speed': windSpeedArray }, $('#popupGraphWind'), false);
               
     showGraph('10 Day Precipitation Chance', '10 Days', 'Chance (%)', colorSet,
-              { 'Precip Chance': popArray }, $('#popupGraphPop'));
+              { 'Precip Chance': popArray }, $('#popupGraphPop'), true);
   	
   	showHidePopup(true);
   }

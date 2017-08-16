@@ -66,6 +66,19 @@ app.get("/searchForLoc", function (request, response) {
   });
 });
 
+app.get("/searchForLatLng", function (request, response) {
+  var url = require('url');
+  var url_parts = url.parse(request.url, true);
+  var query = url_parts.query;
+  var locationText = query.loc;
+  
+  var wuUrl = "http://api.wunderground.com/api/448092a36655be00/geolookup/q/" + locationText + '.json';
+  
+  httpRequest(wuUrl, function(retval) {
+    response.send(retval);
+  });
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);

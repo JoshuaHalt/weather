@@ -107,13 +107,13 @@ function hourlyGraphClick() {
     $('#defaultTabGraphPopup')[0].click();
     
     showGraph('Hourly Temps', '36 Hour Forecast', 'Temperature (\xB0F)', colorSet,
-              { 'Temperature': tempArray, 'Feels Like': feelsLikeArray }, $('#popupGraphTemp'));
+              { 'Temperature': tempArray, 'Feels Like': feelsLikeArray }, $('#popupGraphTemp'), false);
               
     showGraph('Hourly Wind', '36 Hour Forecast', 'Wind (mph)', colorSet,
-              { 'Wind Speed': windSpeedArray }, $('#popupGraphWind'));
+              { 'Wind Speed': windSpeedArray }, $('#popupGraphWind'), false);
               
     showGraph('Hourly Precipitation Chance', '36 Hour Forecast', 'Chance (%)', colorSet,
-              { 'Precip Chance': popArray }, $('#popupGraphPop'));
+              { 'Precip Chance': popArray }, $('#popupGraphPop'), true);
   	
   	showHidePopup(true);
   }

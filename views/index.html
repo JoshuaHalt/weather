@@ -43,6 +43,10 @@
         </div>
       </span>
       
+      <a id="currentLocation" href="javascript:void(0)" class="icon right currentLocationContainer" onclick="currentLocationClick()">
+        <img src="https://cdn.glitch.com/80bb8063-52b2-4adc-b41f-36a027ed93ab%2Fcurrent_location.png" class="icon" alt="Search" />
+      </a>
+      
 
     </header>
     
@@ -252,11 +256,17 @@
           
           <div id="popupGraphsContainerParent">
             <div class="popupSubContainer" onclick="showHidePopup(false, event)">
-              <ul class="tab tabPopup">
-                <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphTemps', 'GraphPopup')" id="defaultTabGraphPopup">Temps</a></li>
-                <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphWind', 'GraphPopup')">Wind</a></li>
-                <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphPop', 'GraphPopup')">Precip</a></li>
-              </ul>
+              <span>
+                <ul class="tab tabPopup">
+                  <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphTemps', 'GraphPopup')" id="defaultTabGraphPopup">Temps</a></li>
+                  <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphWind', 'GraphPopup')">Wind</a></li>
+                  <li><a href="javascript:void(0)" class="tablinksGraphPopup" onclick="openTab(event, 'tabGraphPop', 'GraphPopup')">Precip</a></li>
+                  
+                  <span class="marginTopLarge right">
+                    <span href="javascript:void(0)" class="popupX" onclick="showHidePopup(false)">close</span>
+                  </span>
+                </ul>
+              </span>
               
               <div id="tabGraphTemps" class="tabcontentGraphPopup">
                 <div id="popupGraphTemp"></div>

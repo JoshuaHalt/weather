@@ -22,10 +22,10 @@ $(function() {
 
 function showHideTab(tabName, shouldShow) {
   if (shouldShow) {
-    $('.tab').show();
+    //$('.tab').show();
     $('#' + tabName).show('blind', 1000);
   } else {
-    $('.tab').fadeOut(300);
+    //$('.tab').fadeOut(300);
     $('#' + tabName).fadeOut(300);
   }
 }
@@ -53,3 +53,9 @@ function openTab(evt, tabName, tabGroup) {
     document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+$(document).keyup(function(e) {
+  if (e.keyCode == 27) { // escape key
+    showHidePopup(false);
+  }
+});

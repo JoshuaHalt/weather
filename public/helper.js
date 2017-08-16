@@ -109,7 +109,7 @@ function processWind(textSelector, imageSelector, deg, dir, mph, gust) {
   }
 }
 
-function showGraph(title, xAxisTitle, yAxisTitle, colorSet, dataSets, selector) {
+function showGraph(title, xAxisTitle, yAxisTitle, colorSet, dataSets, selector, isPrecip) {
   // { "Temperature": tempArray, "Feels Like": feelsLikeArray }
   
   var dataArray = [];
@@ -161,9 +161,12 @@ function showGraph(title, xAxisTitle, yAxisTitle, colorSet, dataSets, selector) 
   		},
   		
   		data: dataArray
-  	};
+  };
+  
+  if (isPrecip)
+    options["axisY"]["maximum"] = 100;
   	
-  	selector.CanvasJSChart(options);
+  selector.CanvasJSChart(options);
 }
 
 function colorTemperature(selector, temp) {

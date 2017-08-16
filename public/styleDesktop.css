@@ -53,6 +53,10 @@ body {
   margin-top: -12px;
 }
 
+.marginTopLarge {
+  margin-top: 16px;
+}
+
 .right {
   float: right;
 }
@@ -283,7 +287,6 @@ ul.tab {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border: 1px solid #ccc;
     background-color: #f1f1f1;
 }
 
@@ -308,7 +311,6 @@ ul.tab li a:focus, .active {background-color: #ccc;}
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
-    border-top: none;
     min-height: 500px;
 }
 
@@ -328,6 +330,12 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 .searchContainer {
   border: 1px solid #008000;
   padding: 8px;
+}
+
+.currentLocationContainer {
+  border: 1px solid #008000;
+  padding: 8px;
+  margin-right: 8px;
 }
 
 .locationList {
@@ -381,6 +389,13 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 }
 
 #popupGraphsContainerParent {
-  position: relative;
-  right: -50%;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popupX {
+  background: #fcc;
+  padding: 16px;
+  cursor: pointer;
 }
